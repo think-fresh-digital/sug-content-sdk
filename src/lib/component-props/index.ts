@@ -3,6 +3,7 @@ import {
   ComponentRendering,
   SitecoreContextValue,
 } from '@sitecore-content-sdk/nextjs';
+import { Pokemon } from 'pokenode-ts';
 
 /**
  * Shared component props
@@ -20,4 +21,8 @@ export type ComponentProps = {
  */
 export type ComponentWithContextProps = ComponentProps & {
   sitecoreContext: SitecoreContextValue;
+};
+
+export type WithPokemon = {
+  pokemon?: Pokemon;
 };

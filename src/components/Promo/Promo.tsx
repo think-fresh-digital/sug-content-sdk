@@ -3,8 +3,13 @@ import {
   NextImage as JssImage,
   Link as JssLink,
   RichText as JssRichText,
+  GetStaticComponentProps,
+  useComponentProps,
 } from '@sitecore-content-sdk/nextjs';
 import { PromoProps } from './Promo.types';
+import { WithPokemon } from 'lib/component-props';
+import { Pokemon } from 'pokenode-ts';
+import Image from 'next/image';
 
 const PromoDefaultComponent = (props: PromoProps): JSX.Element => (
   <div className={`component promo ${props.params.styles}`}>
@@ -15,6 +20,9 @@ const PromoDefaultComponent = (props: PromoProps): JSX.Element => (
 );
 
 export const Default = (props: PromoProps): JSX.Element => {
+
+  const data = useComponentProps<WithPokemon>(props.rendering.uid);
+
   const id = props.params.RenderingIdentifier;
   if (props.fields) {
     return (
@@ -23,10 +31,27 @@ export const Default = (props: PromoProps): JSX.Element => {
           <div className="field-promoicon">
             <JssImage field={props.fields.PromoIcon} />
           </div>
+          {data?.pokemon && (
+            <div className="field-promoicon">
+              <Image src={data.pokemon.sprites.back_shiny as string} alt='pokemon back shiny' style={{ objectFit: "contain" }} width={96} height={96} />
+            </div>
+          )}
           <div className="promo-text">
             <div>
               <div className="field-promotext">
                 <JssRichText field={props.fields.PromoText} />
+                {data?.pokemon && (
+                  <>
+                    <h3>Abilities</h3>
+                    <ul>
+                      {data.pokemon.abilities.map((a) => {
+                        return (
+                          <li>{a.ability.name}</li>
+                        )
+                      })}
+                    </ul>
+                  </>
+                )}
               </div>
             </div>
             <div className="field-promolink">
@@ -66,4 +91,16 @@ export const WithText = (props: PromoProps): JSX.Element => {
   }
 
   return <PromoDefaultComponent {...props} />;
-}; 
+};
+
+export const getStaticProps: GetStaticComponentProps = async (
+  _rendering,
+  layoutData,
+): Promise<WithPokemon> => {
+
+  const pokemon = layoutData.sitecore.context["pokemon"] as Pokemon ?? null;
+
+  return {
+    pokemon,
+  }
+};

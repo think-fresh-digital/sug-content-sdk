@@ -1,4 +1,5 @@
 import { ImageField, Field, LinkField } from '@sitecore-content-sdk/nextjs';
+import { ComponentProps } from 'lib/component-props';
 
 export interface Fields {
   PromoIcon: ImageField;
@@ -7,7 +8,6 @@ export interface Fields {
   PromoText2: Field<string>;
 }
 
-export type PromoProps = {
-  params: { [key: string]: string };
+export type PromoProps = ComponentProps & {
   fields: Fields;
 }; 

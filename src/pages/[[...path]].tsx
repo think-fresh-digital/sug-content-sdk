@@ -13,6 +13,7 @@ import { isDesignLibraryPreviewData } from '@sitecore-content-sdk/nextjs/editing
 import client from 'lib/sitecore-client';
 import components from 'lib/component-map';
 import scConfig from 'sitecore.config';
+import { getPokemon } from 'lib/poke-client';
 
 const SitecorePage = ({ notFound, componentProps, layout }: SitecorePageProps): JSX.Element => {
   useEffect(() => {
@@ -81,17 +82,22 @@ export const getStaticProps: GetStaticProps = async (context) => {
       : await client.getPage(path, { locale: context.locale });
   }
   if (page) {
+
+    if (process.env.POKEMON_ENABLED === 'true') {
+      const pokemon = await getPokemon('luxray');
+
+      page.layout.sitecore.context.pokemon = pokemon;
+    }
+
     props = {
       ...page,
       dictionary: await client.getDictionary({ site: page.site?.name, locale: page.locale }),
       componentProps: await client.getComponentData(page.layout, context, components),
     };
   }
+
   return {
     props,
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 5 seconds
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 5 seconds

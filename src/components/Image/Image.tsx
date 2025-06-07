@@ -3,9 +3,13 @@ import {
   Link as JssLink,
   Text,
   useSitecoreContext,
+  GetStaticComponentProps,
+  useComponentProps,
 } from '@sitecore-content-sdk/nextjs';
 import React, { CSSProperties, JSX } from 'react';
 import { ImageProps } from './Image.types';
+import { WithPokemon } from 'lib/component-props';
+import { Pokemon } from 'pokenode-ts';
 
 const ImageDefault = (props: ImageProps): JSX.Element => (
   <div className={`component image ${props.params.styles}`.trimEnd()}>
@@ -16,6 +20,9 @@ const ImageDefault = (props: ImageProps): JSX.Element => (
 );
 
 export const Banner = (props: ImageProps): JSX.Element => {
+
+  const data = useComponentProps<WithPokemon>(props.rendering.uid);
+
   const id = props.params.RenderingIdentifier;
   const { sitecoreContext } = useSitecoreContext();
   const isPageEditing = sitecoreContext.pageEditing;
@@ -35,14 +42,26 @@ export const Banner = (props: ImageProps): JSX.Element => {
   };
 
   return (
-    <div
-      className={`component hero-banner ${props.params.styles} ${classHeroBannerEmpty}`}
-      id={id ? id : undefined}
-    >
-      <div className="component-content sc-sxa-image-hero-banner" style={backgroundStyle}>
-        {sitecoreContext.pageEditing ? <JssImage field={modifyImageProps} /> : ''}
+    <>
+      <div
+        className={`component hero-banner ${props.params.styles} ${classHeroBannerEmpty}`}
+        id={id ? id : undefined}
+      >
+        <div className="component-content sc-sxa-image-hero-banner" style={backgroundStyle}>
+          {sitecoreContext.pageEditing ? <JssImage field={modifyImageProps} /> : ''}
+        </div>
       </div>
-    </div>
+      {data?.pokemon && (
+        <div
+          className={`component hero-banner ${props.params.styles} ${classHeroBannerEmpty}`}
+          id={id ? id : undefined}
+        >
+          <div className="component-content sc-sxa-image-hero-banner" style={{ backgroundImage: `url('${data.pokemon.sprites.front_shiny}')` }}>
+
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
@@ -74,4 +93,16 @@ export const Default = (props: ImageProps): JSX.Element => {
   }
 
   return <ImageDefault {...props} />;
-}; 
+};
+
+export const getStaticProps: GetStaticComponentProps = async (
+  _rendering,
+  layoutData,
+): Promise<WithPokemon> => {
+
+  const pokemon = layoutData.sitecore.context["pokemon"] as Pokemon ?? null;
+
+  return {
+    pokemon,
+  }
+};
