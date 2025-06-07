@@ -7,6 +7,7 @@ import {
 } from '@sitecore-content-sdk/nextjs/middleware';
 import sites from '.sitecore/sites.json';
 import scConfig from 'sitecore.config';
+import { AntiTrainingMiddleware } from 'lib/middleware/anti-training-middleware';
 
 const multisite = new MultisiteMiddleware({
   /**
@@ -20,6 +21,7 @@ const multisite = new MultisiteMiddleware({
   // This is an important performance consideration since Next.js Edge middleware runs on every request.
   skip: () => false,
 });
+
 const redirects = new RedirectsMiddleware({
   /**
    * List of sites for site resolver to work with
@@ -48,8 +50,10 @@ const personalize = new PersonalizeMiddleware({
   skip: () => false,
 });
 
+const antiTraining = new AntiTrainingMiddleware();
+
 export function middleware(req: NextRequest, ev: NextFetchEvent) {
-  return defineMiddleware(multisite, redirects, personalize).exec(req, ev);
+  return defineMiddleware(multisite, redirects, antiTraining, personalize).exec(req, ev);
 }
 
 export const config = {

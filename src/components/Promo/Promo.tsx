@@ -46,7 +46,7 @@ export const Default = (props: PromoProps): JSX.Element => {
                     <ul>
                       {data.pokemon.abilities.map((a) => {
                         return (
-                          <li>{a.ability.name}</li>
+                          <li key={a.ability.name}>{a.ability.name}</li>
                         )
                       })}
                     </ul>
