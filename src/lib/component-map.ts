@@ -12,13 +12,13 @@ import * as FEAASScripts from 'src/components/FEAASScripts/FEAASScripts';
 import * as Image from 'src/components/Image/Image';
 import * as LinkList from 'src/components/LinkList/LinkList';
 import * as Navigation from 'src/components/Navigation/Navigation';
-import * as PageContent from 'src/components/PageContent/PageContent';
+import * as PageContent from 'components/Stories/PageContent/PageContent';
 import * as PartialDesignDynamicPlaceholder from 'src/components/PartialDesignDynamicPlaceholder/PartialDesignDynamicPlaceholder';
-import * as Promo from 'src/components/Promo/Promo';
-import * as RichText from 'src/components/RichText/RichText';
+import * as Promo from 'components/Stories/Promo/Promo';
+import * as RichText from 'components/Stories/RichText/RichText';
 import * as RowSplitter from 'src/components/RowSplitter/RowSplitter';
 import * as SitecoreStyles from 'src/components/SitecoreStyles/SitecoreStyles';
-import * as Title from 'src/components/Title/Title';
+import * as Title from 'components/Stories/Title/Title';
 
 // Components must be registered with to match the string key with component name in Sitecore
 export const componentMap = new Map<string, NextjsJssComponent>([

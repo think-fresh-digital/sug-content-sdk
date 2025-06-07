@@ -1,6 +1,7 @@
 import config from './sitecore.config';
 import { defineCliConfig } from '@sitecore-content-sdk/nextjs/config';
 import { generateSites, generateMetadata } from '@sitecore-content-sdk/nextjs/tools';
+import { generateStories } from 'lib/build-commands/generate-stories';
 
 export default defineCliConfig({
   build: {
@@ -9,6 +10,7 @@ export default defineCliConfig({
       generateSites({
         scConfig: config,
       }),
+      generateStories()
     ],
   },
   scaffold: {
@@ -17,11 +19,17 @@ export default defineCliConfig({
         name: "fixDefault",
         generateTemplate: (componentName: string) => {
           return `import React, { JSX } from 'react';
-import { ComponentParams, ComponentRendering } from '@sitecore-content-sdk/nextjs';
+import { ${componentName}Props } from './${componentName}.types.ts';
 
-interface ${componentName}Props {
-  rendering: ComponentRendering & { params: ComponentParams };
-  params: ComponentParams;
+
+// Move to ${componentName}.types.ts
+interface ${componentName}Fields {
+  sample: Field<string>;
+}
+
+// Move to ${componentName}.types.ts
+export type ${componentName}Props = ComponentWithContextProps & {
+  fields: ${componentName}Fields
 }
 
 export const Default = (props: ${componentName}Props): JSX.Element => {

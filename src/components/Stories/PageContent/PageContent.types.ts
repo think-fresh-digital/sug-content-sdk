@@ -1,12 +1,12 @@
 import { JSX } from 'react';
 import { RichTextField } from '@sitecore-content-sdk/nextjs';
+import { ComponentWithContextProps } from 'lib/component-props';
 
 export interface Fields {
   Content: RichTextField;
 }
 
-export type PageContentProps = {
-  params: { [key: string]: string };
+export type PageContentProps = ComponentWithContextProps & {
   fields: Fields;
 };
 

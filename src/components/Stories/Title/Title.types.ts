@@ -1,3 +1,4 @@
+import { ComponentWithContextProps } from 'lib/component-props';
 import { JSX } from 'react';
 
 export interface Fields {
@@ -29,8 +30,7 @@ export interface Fields {
   };
 }
 
-export type TitleProps = {
-  params: { [key: string]: string };
+export type TitleProps = ComponentWithContextProps & {
   fields: Fields;
 };
 
