@@ -1,14 +1,6 @@
 import React, { JSX } from 'react';
-import { Field, RichText as JssRichText } from '@sitecore-content-sdk/nextjs';
-
-interface Fields {
-  Text: Field<string>;
-}
-
-export type RichTextProps = {
-  params: { [key: string]: string };
-  fields: Fields;
-};
+import { RichText as JssRichText } from '@sitecore-content-sdk/nextjs';
+import { RichTextProps } from './RichText.types';
 
 export const Default = (props: RichTextProps): JSX.Element => {
   const text = props.fields ? (
@@ -26,4 +18,4 @@ export const Default = (props: RichTextProps): JSX.Element => {
       <div className="component-content">{text}</div>
     </div>
   );
-};
+}; 

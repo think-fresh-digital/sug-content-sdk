@@ -1,10 +1,6 @@
-import { ComponentParams, ComponentRendering, Placeholder } from '@sitecore-content-sdk/nextjs';
+import { Placeholder } from '@sitecore-content-sdk/nextjs';
 import React, { JSX } from 'react';
-
-interface ComponentProps {
-  rendering: ComponentRendering & { params: ComponentParams };
-  params: ComponentParams;
-}
+import { ComponentProps } from './Container.types';
 
 const DefaultContainer = (props: ComponentProps): JSX.Element => {
   const containerStyles = props.params && props.params.Styles ? props.params.Styles : '';
@@ -46,4 +42,4 @@ export const Default = (props: ComponentProps): JSX.Element => {
   }
 
   return <DefaultContainer {...props} />;
-};
+}; 

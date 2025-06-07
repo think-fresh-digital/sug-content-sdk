@@ -1,24 +1,11 @@
 import {
-  Field,
-  ImageField,
   NextImage as JssImage,
   Link as JssLink,
-  LinkField,
   Text,
   useSitecoreContext,
 } from '@sitecore-content-sdk/nextjs';
 import React, { CSSProperties, JSX } from 'react';
-
-interface Fields {
-  Image: ImageField & { metadata?: { [key: string]: unknown } };
-  ImageCaption: Field<string>;
-  TargetUrl: LinkField;
-}
-
-type ImageProps = {
-  params: { [key: string]: string };
-  fields: Fields;
-};
+import { ImageProps } from './Image.types';
 
 const ImageDefault = (props: ImageProps): JSX.Element => (
   <div className={`component image ${props.params.styles}`.trimEnd()}>
@@ -87,4 +74,4 @@ export const Default = (props: ImageProps): JSX.Element => {
   }
 
   return <ImageDefault {...props} />;
-};
+}; 

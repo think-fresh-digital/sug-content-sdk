@@ -1,23 +1,6 @@
 import React, { useState, JSX } from 'react';
-import { Link, LinkField, Text, TextField, useSitecoreContext } from '@sitecore-content-sdk/nextjs';
-
-interface Fields {
-  Id: string;
-  DisplayName: string;
-  Title: TextField;
-  NavigationTitle: TextField;
-  Href: string;
-  Querystring: string;
-  Children: Array<Fields>;
-  Styles: string[];
-}
-
-type NavigationProps = {
-  params?: { [key: string]: string };
-  fields: Fields;
-  handleClick: (event?: React.MouseEvent<HTMLElement>) => void;
-  relativeLevel: number;
-};
+import { Link, LinkField, Text, useSitecoreContext } from '@sitecore-content-sdk/nextjs';
+import { NavigationProps, Fields } from './Navigation.types';
 
 const getNavigationText = function (props: NavigationProps): JSX.Element | string {
   let text;
@@ -150,4 +133,4 @@ const getLinkTitle = (props: NavigationProps): string | undefined => {
   }
 
   return title;
-};
+}; 

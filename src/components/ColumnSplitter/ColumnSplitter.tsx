@@ -1,10 +1,6 @@
 import React, { JSX } from 'react';
-import { ComponentParams, ComponentRendering, Placeholder } from '@sitecore-content-sdk/nextjs';
-
-interface ComponentProps {
-  rendering: ComponentRendering & { params: ComponentParams };
-  params: ComponentParams;
-}
+import { Placeholder } from '@sitecore-content-sdk/nextjs';
+import { ComponentProps } from './ColumnSplitter.types';
 
 export const Default = (props: ComponentProps): JSX.Element => {
   const styles = `${props.params.GridParameters ?? ''} ${props.params.Styles ?? ''}`.trimEnd();
@@ -47,4 +43,4 @@ export const Default = (props: ComponentProps): JSX.Element => {
       })}
     </div>
   );
-};
+}; 

@@ -1,45 +1,6 @@
 import { Link, LinkField, Text, TextField, useSitecoreContext } from '@sitecore-content-sdk/nextjs';
 import React, { JSX } from 'react';
-
-interface Fields {
-  data: {
-    datasource: {
-      url: {
-        path: string;
-        siteName: string;
-      };
-      field: {
-        jsonValue: {
-          value: string;
-          metadata?: { [key: string]: unknown };
-        };
-      };
-    };
-    contextItem: {
-      url: {
-        path: string;
-        siteName: string;
-      };
-      field: {
-        jsonValue: {
-          value: string;
-          metadata?: { [key: string]: unknown };
-        };
-      };
-    };
-  };
-}
-
-type TitleProps = {
-  params: { [key: string]: string };
-  fields: Fields;
-};
-
-type ComponentContentProps = {
-  id: string;
-  styles: string;
-  children: JSX.Element;
-};
+import { TitleProps, ComponentContentProps } from './Title.types';
 
 const ComponentContent = (props: ComponentContentProps) => {
   const id = props.id;
@@ -83,4 +44,4 @@ export const Default = (props: TitleProps): JSX.Element => {
       </>
     </ComponentContent>
   );
-};
+}; 

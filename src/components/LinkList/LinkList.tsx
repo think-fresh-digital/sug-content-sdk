@@ -1,36 +1,6 @@
 import React, { JSX } from 'react';
-import { Link as JssLink, Text, LinkField, TextField } from '@sitecore-content-sdk/nextjs';
-
-type ResultsFieldLink = {
-  field: {
-    link: LinkField;
-  };
-};
-
-interface Fields {
-  data: {
-    datasource: {
-      children: {
-        results: ResultsFieldLink[];
-      };
-      field: {
-        title: TextField;
-      };
-    };
-  };
-}
-
-type LinkListProps = {
-  params: { [key: string]: string };
-  fields: Fields;
-};
-
-type LinkListItemProps = {
-  key: string;
-  index: number;
-  total: number;
-  field: LinkField;
-};
+import { Link as JssLink, Text } from '@sitecore-content-sdk/nextjs';
+import { LinkListProps, LinkListItemProps, ResultsFieldLink } from './LinkList.types';
 
 const LinkListItem = (props: LinkListItemProps) => {
   let className = `item${props.index}`;
@@ -84,4 +54,4 @@ export const Default = (props: LinkListProps): JSX.Element => {
       </div>
     </div>
   );
-};
+}; 

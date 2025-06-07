@@ -4,21 +4,7 @@ import {
   useSitecoreContext,
   RichTextField,
 } from '@sitecore-content-sdk/nextjs';
-
-interface Fields {
-  Content: RichTextField;
-}
-
-type PageContentProps = {
-  params: { [key: string]: string };
-  fields: Fields;
-};
-
-type ComponentContentProps = {
-  id: string;
-  styles: string;
-  children: JSX.Element;
-};
+import { PageContentProps, ComponentContentProps } from './PageContent.types';
 
 const ComponentContent = (props: ComponentContentProps) => {
   const id = props.id;
@@ -56,4 +42,4 @@ export const Default = (props: PageContentProps): JSX.Element => {
       <JssRichText field={field} />
     </ComponentContent>
   );
-};
+}; 
