@@ -10,4 +10,4 @@ export interface Fields {
 
 export type PromoProps = ComponentWithContextProps & {
   fields: Fields;
-}; 
+};

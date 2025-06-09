@@ -48,4 +48,4 @@ const FEAASScripts = (): JSX.Element => {
   return <></>;
 };
 
-export default FEAASScripts; 
+export default FEAASScripts;

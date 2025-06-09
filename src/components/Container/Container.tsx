@@ -42,4 +42,4 @@ export const Default = (props: ComponentProps): JSX.Element => {
   }
 
   return <DefaultContainer {...props} />;
-}; 
+};

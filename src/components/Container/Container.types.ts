@@ -3,4 +3,4 @@ import { ComponentParams, ComponentRendering } from '@sitecore-content-sdk/nextj
 export interface ComponentProps {
   rendering: ComponentRendering & { params: ComponentParams };
   params: ComponentParams;
-} 
+}

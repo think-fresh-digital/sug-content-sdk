@@ -22,4 +22,4 @@ const SitecoreStyles = ({ layoutData, enableStyles, enableThemes }: SitecoreStyl
   );
 };
 
-export default SitecoreStyles; 
+export default SitecoreStyles;

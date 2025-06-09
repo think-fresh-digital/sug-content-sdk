@@ -9,4 +9,4 @@ export interface Fields {
 
 export type ImageProps = ComponentProps & {
   fields: Fields;
-}
+};

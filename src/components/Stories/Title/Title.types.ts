@@ -38,4 +38,4 @@ export type ComponentContentProps = {
   id: string;
   styles: string;
   children: JSX.Element;
-}; 
+};

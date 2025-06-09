@@ -6,4 +6,4 @@ export type ContentBlockProps = ComponentProps & {
     heading: Field<string>;
     content: Field<string>;
   };
-}; 
+};

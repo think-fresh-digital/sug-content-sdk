@@ -133,4 +133,4 @@ const getLinkTitle = (props: NavigationProps): string | undefined => {
   }
 
   return title;
-}; 
+};

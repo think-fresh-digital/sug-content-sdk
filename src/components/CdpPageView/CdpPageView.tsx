@@ -60,4 +60,4 @@ const CdpPageView = (): JSX.Element => {
   return <></>;
 };
 
-export default CdpPageView; 
+export default CdpPageView;

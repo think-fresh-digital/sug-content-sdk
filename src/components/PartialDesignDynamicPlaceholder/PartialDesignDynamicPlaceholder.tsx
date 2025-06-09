@@ -6,4 +6,4 @@ const PartialDesignDynamicPlaceholder = (props: DynamicPlaceholderProps): JSX.El
   <Placeholder name={props.rendering?.params?.sig || ''} rendering={props.rendering} />
 );
 
-export default PartialDesignDynamicPlaceholder; 
+export default PartialDesignDynamicPlaceholder;

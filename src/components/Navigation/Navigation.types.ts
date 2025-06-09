@@ -16,4 +16,4 @@ export type NavigationProps = {
   fields: Fields;
   handleClick: (event?: React.MouseEvent<HTMLElement>) => void;
   relativeLevel: number;
-}; 
+};

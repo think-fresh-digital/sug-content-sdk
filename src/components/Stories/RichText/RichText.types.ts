@@ -7,4 +7,4 @@ export interface Fields {
 
 export type RichTextProps = ComponentWithContextProps & {
   fields: Fields;
-}; 
+};

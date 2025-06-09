@@ -82,7 +82,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       : await client.getPage(path, { locale: context.locale });
   }
   if (page) {
-
     if (process.env.POKEMON_ENABLED === 'true') {
       const pokemon = await getPokemon('luxray');
 

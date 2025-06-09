@@ -42,4 +42,4 @@ export const Default = (props: PageContentProps): JSX.Element => {
       <JssRichText field={field} />
     </ComponentContent>
   );
-}; 
+};

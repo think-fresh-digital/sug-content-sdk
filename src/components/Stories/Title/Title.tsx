@@ -15,7 +15,7 @@ const ComponentContent = (props: ComponentContentProps) => {
 
 export const Default = (props: TitleProps): JSX.Element => {
   const datasource = props.fields?.data?.datasource || props.fields?.data?.contextItem;
-  
+
   const text: TextField = datasource?.field?.jsonValue || {};
   const link: LinkField = {
     value: {
@@ -44,4 +44,4 @@ export const Default = (props: TitleProps): JSX.Element => {
       </>
     </ComponentContent>
   );
-}; 
+};
