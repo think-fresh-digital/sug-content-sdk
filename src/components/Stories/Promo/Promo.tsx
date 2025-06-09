@@ -12,7 +12,7 @@ import { Pokemon } from 'pokenode-ts';
 import Image from 'next/image';
 
 const PromoDefaultComponent = (props: PromoProps): JSX.Element => (
-  <div className={`component promo ${props.params.styles}`}>
+  <div className={`component promo ${props?.params?.styles}`}>
     <div className="component-content">
       <span className="is-empty-hint">Promo</span>
     </div>
@@ -20,34 +20,47 @@ const PromoDefaultComponent = (props: PromoProps): JSX.Element => (
 );
 
 export const Default = (props: PromoProps): JSX.Element => {
-
   const data = useComponentProps<WithPokemon>(props.rendering.uid);
 
   const id = props.params.RenderingIdentifier;
   if (props.fields) {
     return (
-      <div className={`component promo ${props.params.styles}`} id={id ? id : undefined}>
+      <div className={`component promo ${props?.params?.styles}`} id={id ? id : undefined}>
         <div className="component-content">
-          <div className="field-promoicon">
-            <JssImage field={props.fields.PromoIcon} />
-          </div>
+          {!data?.pokemon && (
+            <div className="field-promoicon">
+              <JssImage field={props.fields.PromoIcon} />
+            </div>
+          )}
           {data?.pokemon && (
             <div className="field-promoicon">
-              <Image src={data.pokemon.sprites.back_shiny as string} alt='pokemon back shiny' style={{ objectFit: "contain" }} width={96} height={96} />
+              <Image
+                src={data.pokemon.sprites.other?.dream_world.front_default as string}
+                alt="pokemon dream world front default"
+                style={{
+                  objectFit: 'contain',
+                  display: 'block',
+                  margin: '0 auto',
+                }}
+                width={200}
+                height={200}
+              />
             </div>
           )}
           <div className="promo-text">
             <div>
               <div className="field-promotext">
-                <JssRichText field={props.fields.PromoText} />
+                {!data?.pokemon && <JssRichText field={props.fields.PromoText} />}
                 {data?.pokemon && (
                   <>
                     <h3>Abilities</h3>
                     <ul>
                       {data.pokemon.abilities.map((a) => {
                         return (
-                          <li key={a.ability.name}>{a.ability.name}</li>
-                        )
+                          <li key={a.ability.name}>
+                            <strong>{a.ability.name}</strong>
+                          </li>
+                        );
                       })}
                     </ul>
                   </>
@@ -70,7 +83,7 @@ export const WithText = (props: PromoProps): JSX.Element => {
   const id = props.params.RenderingIdentifier;
   if (props.fields) {
     return (
-      <div className={`component promo ${props.params.styles}`} id={id ? id : undefined}>
+      <div className={`component promo ${props?.params?.styles}`} id={id ? id : undefined}>
         <div className="component-content">
           <div className="field-promoicon">
             <JssImage field={props.fields.PromoIcon} />
@@ -95,12 +108,11 @@ export const WithText = (props: PromoProps): JSX.Element => {
 
 export const getStaticProps: GetStaticComponentProps = async (
   _rendering,
-  layoutData,
+  layoutData
 ): Promise<WithPokemon> => {
-
-  const pokemon = layoutData.sitecore.context["pokemon"] as Pokemon ?? null;
+  const pokemon = (layoutData.sitecore.context['pokemon'] as Pokemon) ?? null;
 
   return {
     pokemon,
-  }
+  };
 };
