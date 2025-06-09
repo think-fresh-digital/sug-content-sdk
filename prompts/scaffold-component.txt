@@ -1,0 +1,16 @@
+# context
+
+The root of the solution is "C:\Src\talks\25\content-sdk\sug-content-sdk-nextjs"
+The ComponentName is "Hero"
+
+# steps
+
+1. run the cli command `sitecore-tools project component scaffold src/components/SUGLON/[ComponentName]/[ComponentName] --templateName=fixDefault` from the root of the solution
+2. locate the tsx file src/components/SUGLON/[ComponentName]/[ComponentName].tsx from the root of the solution and create an adjacent types file called [ComponentName].types.ts and import Field from @sitecore-content-sdk/nextjs and ComponentWithContextProps from lib/component-props.
+3. move interfaces or types from the tsx file into the types file and then remove them from the tsx file
+
+# guardrails
+
+After running the cli command, do not try to automatically fix linting errors in the tsx file
+After creating the types file, do not try to automatically fix linting errors in the types file
+If the cli command fails, do not attempt to solve the problem another way

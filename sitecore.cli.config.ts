@@ -19,16 +19,13 @@ export default defineCliConfig({
         name: "fixDefault",
         generateTemplate: (componentName: string) => {
           return `import React, { JSX } from 'react';
-import { ${componentName}Props } from './${componentName}.types.ts';
+import { ${componentName}Props } from './${componentName}.types';
 
-
-// Move to types file
 interface ${componentName}Fields {
   // Replace sample with your component fields
   sample: Field<string>;
 }
 
-// Move to types file
 export type ${componentName}Props = ComponentWithContextProps & {
   fields: ${componentName}Fields
 }
