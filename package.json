@@ -77,7 +77,7 @@
     "build": "cross-env NODE_ENV=production npm-run-all --serial sitecore-tools:build next:build",
     "lint": "eslint ./src/**/*.tsx ./src/**/*.ts ./scripts/**/*.ts",
     "next:build": "next build",
-    "next:dev": "cross-env NODE_OPTIONS='--inspect' next dev",
+    "next:dev": "cross-env NODE_OPTIONS='--inspect=9300' next dev -p 3001",
     "next:start": "next start",
     "sitecore-tools:build": "sitecore-tools project build",
     "dev": "cross-env NODE_ENV=development npm-run-all --serial sitecore-tools:build next:dev",

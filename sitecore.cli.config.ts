@@ -22,12 +22,13 @@ export default defineCliConfig({
 import { ${componentName}Props } from './${componentName}.types.ts';
 
 
-// Move to ${componentName}.types.ts
+// Move to types file
 interface ${componentName}Fields {
+  // Replace sample with your component fields
   sample: Field<string>;
 }
 
-// Move to ${componentName}.types.ts
+// Move to types file
 export type ${componentName}Props = ComponentWithContextProps & {
   fields: ${componentName}Fields
 }
