@@ -1,0 +1,13 @@
+{
+  "$schema": "../../.sitecore/schemas/ModuleFile.schema.json",
+  "namespace": "SkatePark",
+  "items": {
+    "path": "SkatePark",
+    "includes": [
+      {
+        "name": "SkateParkTemplates",
+        "path": "/sitecore/templates/Project/Skate Park"
+      }
+    ]
+  }
+}
